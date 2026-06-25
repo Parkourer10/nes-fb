@@ -1,3 +1,6 @@
+## this readme hasnt really been changed apart from the key definations
+----
+
 # smolnes
 
 A NES emulator in ~5000 significant bytes of c.
