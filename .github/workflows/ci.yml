@@ -1,0 +1,53 @@
+name: CI
+
+on:
+  push:
+    paths-ignore:
+      - '.gitignore'
+      - 'img/**'
+      - 'README.md'
+  pull_request:
+    paths-ignore:
+      - '.gitignore'
+      - 'img/**'
+      - 'README.md'
+  workflow_dispatch:
+
+jobs:
+  build-linux:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install dependencies
+        run: |
+          sudo apt-get -y update
+          sudo apt-get -y install libsdl2-dev
+      - name: Build
+        run: make -j$(nproc)
+  build-macos:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install dependencies
+        env:
+          HOMEBREW_NO_ANALYTICS: 1
+        run: brew install sdl2
+      - name: Build
+        run: make -j$(getconf NPROCESSORS_ONLN 2>/dev/null || getconf _NPROCESSORS_ONLN)
+  build-windows-msvc:
+    runs-on: windows-latest
+    env:
+      POWERSHELL_TELEMETRY_OPTOUT: 1
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: recursive
+      - uses: ilammy/msvc-dev-cmd@v1
+      - name: Initialize and update submodules
+        run: |
+          git submodule init
+          git submodule update --recursive
+      - name: Generate project
+        run: cmake -B build
+      - name: Build
+        run: cmake --build build -j (Get-WmiObject Win32_Processor).NumberOfLogicalProcessors

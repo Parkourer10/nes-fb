@@ -1,0 +1,7 @@
+smolnes
+deobfuscated
+*.nes
+out
+build
+.vs
+CMakeSettings.json
