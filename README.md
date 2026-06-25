@@ -57,10 +57,10 @@ Keys:
 
 | Action | Key |
 | --- | --- |
-| DPAD-UP | <kbd>↑</kbd> |
-| DPAD-DOWN | <kbd>↓</kbd> |
-| DPAD-LEFT | <kbd>←</kbd> |
-| DPAD-RIGHT | <kbd>→</kbd> |
+| DPAD-UP | <kbd>W</kbd> |
+| DPAD-DOWN | <kbd>S</kbd> |
+| DPAD-LEFT | <kbd>A</kbd> |
+| DPAD-RIGHT | <kbd>D</kbd> |
 | B | <kbd>Z</kbd> |
 | A | <kbd>X</kbd> |
 | START | <kbd>Enter</kbd> |
